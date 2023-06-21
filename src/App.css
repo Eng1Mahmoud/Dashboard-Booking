@@ -1,38 +1,212 @@
-.App {
+
+*{
+  color:rgb(0 0 0 / 58%);
+  font-family: main2 !important;
+  color:#2c387e;
+}
+body{
+  position:"relative";
+    background-color: #f5f5f5;
+}
+/*start header */
+header{
+  background:#f0f0f0;
+  border-bottom: 1px solid #ced4da;
+}
+.navbar-brand{
+  font-size: 35px;
+  font-weight:bold;
+  color:#2c387e;
+  width:60px;
+  height:60px;
+  transform:scale(1.7);
+  -webkit-transform:scale(1.7);
+  -moz-transform:scale(1.7);
+  -ms-transform:scale(1.7);
+  -o-transform:scale(1.7);
+}
+.nav-link{
+  font-size: 20px;
+  font-weight:bold;
+  color:#2c387e;
+  font-family: main2;
+}
+.navbar-collapse{
+  padding-top:20px;
+}
+/*end header*/
+
+/*start home*/
+.home{
+  background-color: #f5f5f5;
+  width: 100%;
+}
+.home .welcome{
+  font-size: 60px;
+  line-height: 80px;
+
+}
+
+/*start login*/
+.login{
+  background-color: #f5f5f5;
+}
+
+login h1{
   text-align: center;
+  font-size: 50px;
+  color: #fff5;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.not-found{
+  color:red;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 125px;
+    margin-top: 125px;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/*user avatar*/
+.avatar-user{
+  width:60px;
+  height:60px; 
+  border-radius: 50%;
+}
+.allTrips{
+  height: 200px;
+  overflow-y: scroll;
+}
+.allTrips::-webkit-scrollbar {
+  width: 8px;  /* width of the scrollbar */
+}
+
+.allTrips::-webkit-scrollbar-track {
+  background: #f1f1f1;  /* color of the track */
+}
+
+.allTrips::-webkit-scrollbar-thumb {
+  background: #888;  /* color of the thumb */
+  border-radius: 4px;  /* roundness of the thumb */
+}
+
+.allTrips::-webkit-scrollbar-thumb:hover {
+  background: #555;  /* color of the thumb when hovered */
+}
+.trips{
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+.trip,.bus{
+  box-shadow:  0px 0px 1px 0px rgba(0, 0, 0, 0.5);
+  border: 1px solid #ced4da;
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -ms-border-radius:3px;
+  -o-border-radius:3px;
+}
+.bus{
+ position: relative;
+}
+.bus .deleteIcon{
+  position: absolute;
+  top: -14px;
+  right: -5px;
+  cursor: pointer;
+  background:#fff;
+  
+ width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size:20px
+}
+
+.alert{
+  top:10px;
+  width:80%;
+  left:10%;
+  z-index:1;
+  padding:30px;
+  font-size:20px;
+
+}
+
+/*loading spiner*/
+.spinner-grow{
+  width:300px !important;
+  height:200px !important;
+  background:rgba(241, 237, 237, 0.893) !important;
+  border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  -ms-border-radius: 10px !important;
+  -o-border-radius: 10px !important;
+
+}
+.seatsContainer{
+  flex-wrap: wrap;
+}
+.seatsContainer .seat{
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #ced4da;
+  cursor: pointer;
+  border: 1px solid #ced4da;
+}
+
+
+/*start footer */
+
+
+footer{
+  background:#f0f0f0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  border-top: 1px solid #ced4da;
+  border-top: 1px solid #ced4da;
+ 
+}
+footer .content{
+  color:#2c387e;
+  font-family:main2;
+}
+
+@font-face {
+  font-family: main;
+  src: url("./assets/Lost\ Emerald\ 400.otf");
+}
+
+@font-face {
+  font-family: main2;
+  src: url("./assets/Gradia.otf");
+}
+
+
+@font-face {
+  font-family: main3;
+  src: url("./assets/DRAMA GENRE BRUSH DEMO.otf");
+}
+
+
+
+@media (max-width: 768px) {
+  header{
+    padding:0px 7px 0px 23px;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+ .userInfo{
+    font-size:12px !important;
+    color:red !important;
   }
-  to {
-    transform: rotate(360deg);
+  .home .welcome{
+    font-size: 30px;
+    line-height: 40px;
+  }
+  .alert{
+    width:95%;
+    left:2.5%;
   }
 }
