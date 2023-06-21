@@ -20,7 +20,7 @@ export const Users = () => {
       navigat("/login");
     } else {
       axios
-        .get("http://localhost:4000/getAllUsers", {
+        .get("https://booking-bus.onrender.com/getAllUsers", {
           headers: {
             authorization: `Bearer ${token}`,
           },
@@ -35,7 +35,7 @@ export const Users = () => {
   const handleDeleteUser = (email) => {
     const token = Cookies.get("token");
     axios
-      .delete(`http://localhost:4000/deleteUser/${email}`, {
+      .delete(`https://booking-bus.onrender.com/${email}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
