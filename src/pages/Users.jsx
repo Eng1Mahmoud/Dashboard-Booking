@@ -35,7 +35,7 @@ export const Users = () => {
   const handleDeleteUser = (email) => {
     const token = Cookies.get("token");
     axios
-      .delete(`https://booking-bus.onrender.com/${email}`, {
+      .delete(`https://booking-bus.onrender.com/deleteUser/${email}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
