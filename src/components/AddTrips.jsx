@@ -55,7 +55,7 @@ export const AddTrip = () => {
     return errors;
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = (values, { resetForm }) => {
     setIsLoading(true);
     const formattedDate = dayjs(values.date).format("YYYY-M-D");
     const updatedValues = {
@@ -64,41 +64,119 @@ export const AddTrip = () => {
     };
 
     const token = Cookies.get("token");
-    try {
-      const res = await axios.post(
-        "https://booking-bus.onrender.com/admin/AddTrip",
-        updatedValues,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"
-          }
+    axios
+      .post("https://booking-bus.onrender.com/admin/AddTrip", updatedValues, {
+        headers: {
+          authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
         }
-      );
-      setAlert({ show: true, message: res.data.message });
-      setTimeout(() => {
-        setAlert({ show: false, message: "" });
-      }, 5000);
-    } catch (error) {
-      console.log(error);
-    }
+      })
+      .then((res) => {
+        setAlert({ show: true, message: res.data.message });
+        setIsLoading(false);
+        setTimeout(() => {
+          setAlert({ show: false, message: "" });
+        }, 5000);
+      });
 
-    setIsLoading(false);
     resetForm();
   };
 
-  const countries = [
-    // Country data here
-  ];
-
+     const countries = [
+        {
+            name: "Hurghada",
+            title: true
+        },
+        {
+            name: "El Nasr Street",
+            title: false
+        },
+        {
+            name: "Watanya-HRG",
+            title: false
+        },
+        {
+            name: "Al Ahyaa",
+            title: false
+        }, {
+            name: "Giza/Cairo",
+            title: true
+        }, {
+            name: "6 October - El Hussary",
+            title: false
+        }, {
+            name: "Ramsis",
+            title: false
+        }, {
+            name: "Alexandria",
+            title: true
+        }, {
+            name: "Sidi Gaber",
+            title: false
+        }, {
+            name: "Moharam Bek",
+            title: false
+        }, {
+            name: "Dahab",
+            title: true
+        }, {
+            name: "Dahab",
+            title: false
+        }, {
+            name: "Sohag",
+            title: true
+        }, {
+            name: "Dar ElTeb",
+            title: false
+        }, {
+            name: "El Ray",
+            title: false
+        }, {
+            name: "Sharm El Sheikh",
+            title: true
+        }, {
+            name: "Watanya-SSH",
+            title: false
+        }, {
+            name: "El Ruwaysat",
+            title: false
+        }, {
+            name: "Luxor",
+            title: true
+        }, {
+            name: "Railway station",
+            title: false
+        }, {
+            name: "Armant",
+            title: false
+        }, {
+            name: "Qena",
+            title: true
+        }, {
+            name: "Qift",
+            title: false
+        }, {
+            name: "Qena ",
+            title: false
+        }, {
+            name: "Asyout",
+            title: true
+        }, {
+            name: "Elmoalmien",
+            title: false
+        }, {
+            name: "ELHILALEY",
+            title: false
+        },
+    ];
   return (
     <div className="container addTrip pb-5 pt-3">
       <h1 className="py-5">Add Trip</h1>
-      {alert.show && (
+      {alert.show ? (
         <div className="alert alert-primary position-fixed alert" role="alert">
           {alert.message}
         </div>
-      )}
+      ) : null}
       <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={validate}>
         <Form>
           <div className="row">
@@ -107,7 +185,13 @@ export const AddTrip = () => {
                 <label htmlFor="from" className="form-label">
                   From
                 </label>
-                <Field as="select" className="form-control" aria-label="Default select example" id="from" name="from">
+                <Field
+                  as="select"
+                  className="form-control"
+                  aria-label="Default select example"
+                  id="from"
+                  name="from"
+                >
                   <option value="">Select From</option>
                   {countries.map((location, i) => (
                     <option
@@ -128,7 +212,13 @@ export const AddTrip = () => {
                 <label htmlFor="to" className="form-label">
                   To
                 </label>
-                <Field as="select" className="form-control" aria-label="Default select example" id="to" name="to">
+                <Field
+                  as="select"
+                  className="form-control"
+                  aria-label="Default select example"
+                  id="to"
+                  name="to"
+                >
                   <option value="">Select To</option>
                   {countries.map((location, i) => (
                     <option
@@ -163,21 +253,66 @@ export const AddTrip = () => {
                 <ErrorMessage name="date" component="div" className="text-danger" />
               </div>
             </div>
-            {/* Rest of the form fields */}
-          </div>
 
-          <button type="submit" className="btn btn-primary" disabled={isLoading}>
-            {isLoading ? (
-              <div className="loading-container">
-                <ReactLoading type="spin" color="#ffffff" height={20} width={20} />
-                <span className="loading-text">Loading...</span>
+            <div className="col-md-6 col-sm-12">
+              <div className="mb-3">
+                <label htmlFor="time" className="form-label">
+                  Time
+                </label>
+                <Field type="time" className="form-control" id="time" name="time" />
+                <ErrorMessage name="time" component="div" className="text-danger" />
               </div>
-            ) : (
-              "Add Trip"
-            )}
-          </button>
+            </div>
+
+            <div className="col-md-6 col-sm-12">
+              <div className="mb-3">
+                <label htmlFor="busNumber" className="form-label">
+                  Bus Number
+                </label>
+                <Field type="text" className="form-control" id="busNumber" name="busNumber" />
+                <ErrorMessage name="busNumber" component="div" className="text-danger" />
+              </div>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <div className="mb-3">
+                <label htmlFor="capacity" className="form-label">
+                  Capacity
+                </label>
+                <Field type="text" className="form-control" id="capacity" name="capacity" />
+                <ErrorMessage name="capacity" component="div" className="text-danger" />
+              </div>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <div className="mb-3">
+                <label htmlFor="priceSeat" className="form-label">
+                  Seat Price
+                </label>
+                <Field type="text" className="form-control" id="priceSeat" name="priceSeat" />
+                <ErrorMessage name="priceSeat" component="div" className="text-danger" />
+              </div>
+            </div>
+            <div className="col-md-12 col-sm-12">
+              <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                {isLoading ? (
+                  <div className="loading-container">
+                    <ReactLoading type="spin" color="#ffffff" height={20} width={20} />
+                    <span className="loading-text">Loading...</span>
+                  </div>
+                ) : (
+                  "Add Trip"
+                )}
+              </button>
+            </div>
+          </div>
         </Form>
       </Formik>
     </div>
   );
 };
+
+
+
+ 
+
+ 
+    
